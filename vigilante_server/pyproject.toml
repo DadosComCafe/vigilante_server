@@ -1,0 +1,11 @@
+[project]
+name = "vigilante-server"
+version = "0.1.0"
+description = "Um servidor para gerar relatórios das análises de arquivos xlsx"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gradio>=5.31.0",
+    "pandas>=2.2.3",
+    "python-sample-xlsx-report>=0.0.41",
+]
