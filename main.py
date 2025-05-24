@@ -1,7 +1,11 @@
 from python_sample_xlsx_report.src.python_generate_xlsx_report import add_numeric_sheet_to_file, gera_metrica
 from typing import Any
-
 import gradio as gr
+import os
+import logging
+
+
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
 def generate_report(file: Any) -> str:
@@ -14,12 +18,15 @@ def generate_report(file: Any) -> str:
     Returns:
         str: The output file path
     """
-
+    logging.info(f"Iniciando o processamento do arquivo {file} enviado...")
     path_in :str = file.name
     add_numeric_sheet_to_file(path_in)
-    #TODO: chamar a função gera_metrica, passando como parâmetro `path_in.replace('.xlsx', '_numeric.xlsx')`
-    #gera_metrica()
-    return path_in.replace('.xlsx', '_numeric.xlsx')
+    logging.info(f"Gerado relatório com campo numérico: {path_in.replace('.xlsx', '_numeric.xlsx') in os.listdir()}")
+    logging.info(os.listdir())
+    gera_metrica(path_in)
+    logging.info(f"Gerado o relatório das métricas: {path_in.replace('.xlsx', '_analise_quantitativa.xlsx') in os.listdir()}")
+    logging.info(os.listdir())
+    return path_in.replace('.xlsx', '_analise_quantitativa.xlsx')
 
 with gr.Blocks() as demo:
     file_in = gr.File(label="Envie um arquivo XLSX", file_types=['.xlsx'])
@@ -28,3 +35,6 @@ with gr.Blocks() as demo:
     file_in.change(fn=generate_report, inputs=file_in, outputs=btn_download)
 
 demo.launch()
+
+#TODO: Entender para onde vai o arquivo enviado, e o arquivo gerado. Ler para entender se fica somente na memória
+#TODO: Pensar numa forma de indicar que o arquivo já foi gerado, e já se encontra disponível
