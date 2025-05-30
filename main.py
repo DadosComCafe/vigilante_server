@@ -35,6 +35,3 @@ with gr.Blocks() as demo:
     file_in.change(fn=generate_report, inputs=file_in, outputs=btn_download)
 
 demo.launch()
-
-#TODO: Entender para onde vai o arquivo enviado, e o arquivo gerado. Ler para entender se fica somente na memória
-#TODO: Pensar numa forma de indicar que o arquivo já foi gerado, e já se encontra disponível
