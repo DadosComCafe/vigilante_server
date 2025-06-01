@@ -10,23 +10,30 @@ Este projeto possui como objetivo a criação de um servidor gradio, onde o usu�
 
 
 ## Como Usar
-    - __Clone o repositório:__
-        - git clone https://github.com/DadosComCafe/vigilante_server
+__Clone o repositório:__
+```(bash)
+git clone https://github.com/DadosComCafe/vigilante_server
+```
+__Preparar o ambiente e instalar dependências:__
+para acessar o diretório raíz do projeto
+```(bash)
+cd vigilante_server
+```
+para sincronizar com as dependências listadas no pyproject.toml
+```(bash)
+uv sync
+```
+__Rodar o servidor:__
+```(bash)
+uv run main.py
+```
+- __Acessar o servidor:__
+    - O servidor estará disponível em: http://127.0.0.1:7860/
+    - Pronto! Agora é possível enviar um xlsx de uma planilha, que será retornado um outro xlsx com as métricas das colunas numéricas desta planilha
     
-    - __Preparar o ambiente e instalar dependências:__
-        - cd vigilante_server `para acessar o diretório raíz do projeto`
-        - uv sync `para sincronizar com as dependências listadas no pyproject.toml`
-    
-    - __Rodar o servidor:__
-        - uv run main.py
-    
-    - __Acessar o servidor:__
-        - O servidor estará disponível em: http://127.0.0.1:7860/
-        - Pronto! Agora é possível enviar um xlsx de uma planilha, que será retornado um outro xlsx com as métricas das colunas numéricas desta planilha
-    
-    - __Parar o servidor:__
-        - No terminal onde o servidor está executando, pressione ctrl + c.
-        - Pronto! Seu terminal será interrompido.
+- __Parar o servidor:__
+  - No terminal onde o servidor está executando, pressione ctrl + c.
+  - Pronto! Seu terminal será interrompido.
 
 
 ## Ferramentas utilizadas no projeto
@@ -36,17 +43,20 @@ Este projeto possui como objetivo a criação de um servidor gradio, onde o usu�
 - ### __python_sample_xlsx_report__:
     - Biblioteca desenvolvida com o intuito de tornar fácil e rápida a produção de relatórios xlsx. Ainda em desenvolvimento, mas atualmente funciona gerando relatórios da análise quantitativa de um xlsx fornecido.
     - Biblioteca disponível no pypi, sendo possível instalá-la com o pip ou qualquer outro gerenciador de pacotes python (como é o caso, o uv):
-    https://pypi.org/project/python-sample-xlsx-report/ 
+        - https://pypi.org/project/python-sample-xlsx-report/ 
 
 
 ## Docker
 Caso desejado, é possível subir o servidor através do docker. Para buildar a imagem siga os passos:
 
 ### __Buildar__
-- Certifique-se de estar com o terminal aberto na raíz do projeto, e execute:
-    - docker build -t generate_report .
-
+Certifique-se de estar com o terminal aberto na raíz do projeto, e execute:
+```(bash)
+docker build -t generate_report .
+```
 ### __Levantar o container__
-- Certifique-se de ter executado o passo anterior, e de substituir `generate_report` por um nome a sua escolha. Então execute:
-    - docker run -p 7860:7860 generate_report
-    - O servidor estará acessível em http://localhost:7860/
+Certifique-se de ter executado o passo anterior, e de substituir `generate_report` por um nome a sua escolha. Então execute:
+```(bash)
+docker run -p 7860:7860 generate_report
+```
+- O servidor estará acessível em http://localhost:7860/
